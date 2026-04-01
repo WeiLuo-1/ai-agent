@@ -1,6 +1,7 @@
 package com.wei.aiagent.app;
 
 import com.wei.aiagent.advisor.MyLoggerAdvisor;
+import com.wei.aiagent.advisor.ReReadingAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -36,8 +37,10 @@ public class LoveApp {
                 .defaultSystem(SYSTEM_PROMPT)
                 .defaultAdvisors(
                         new MessageChatMemoryAdvisor(chatMemory),
-                        // 自定义拦截器
+                        // 自定义日志拦截器，按需开启
                         new MyLoggerAdvisor()
+                        //自定义推理增强拦截器，按需开启
+//                        new ReReadingAdvisor()
                 )
                 .build();
     }
