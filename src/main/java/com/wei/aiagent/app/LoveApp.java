@@ -2,6 +2,7 @@ package com.wei.aiagent.app;
 
 import com.wei.aiagent.advisor.MyLoggerAdvisor;
 import com.wei.aiagent.advisor.ReReadingAdvisor;
+import com.wei.aiagent.chatmemory.FileBasedChatMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -33,8 +34,11 @@ public class LoveApp {
      * @param ollamaChatModel
      */
     public LoveApp(ChatModel ollamaChatModel) {
+        // 初始化基于文件的对话记忆
+        String fileDir = System.getProperty("user.dir") + "/tmp/chat-memory";
+        ChatMemory chatMemory = new FileBasedChatMemory(fileDir);
         // 初始化基于内存的对话记忆
-        ChatMemory chatMemory = new InMemoryChatMemory();
+        //ChatMemory chatMemory = new InMemoryChatMemory();
         chatClient = ChatClient.builder(ollamaChatModel)
                 .defaultSystem(SYSTEM_PROMPT)
                 .defaultAdvisors(
@@ -62,7 +66,7 @@ public class LoveApp {
                 .call()
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();
-        log.info("Content: {}", content);
+        //log.info("Content: {}", content);
         return content;
     }
 
