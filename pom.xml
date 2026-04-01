@@ -54,6 +54,12 @@
 			<version>1.0.0-M6</version>
 		</dependency>
 
+		<!-- 支持结构化输出 -->
+		<dependency>
+			<groupId>com.github.victools</groupId>
+			<artifactId>jsonschema-generator</artifactId>
+			<version>4.38.0</version>
+		</dependency>
 
 		<!-- DashScope ChatModel 支持（如果使用其他模型，请跳转 Spring AI 文档选择对应的 starter） -->
 <!--		<dependency>-->
