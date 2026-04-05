@@ -68,4 +68,12 @@ class LoveAppTest {
 
         assertTrue(answer.contains("编程导航"), "模型没有读到之前持久化的记忆");
     }
+
+    @Test
+    void doChatWithRag() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "我已经结婚了，但是婚后关系不太亲密，怎么办？";
+        String answer = loveApp.doChatWithRag(message, chatId);
+        Assertions.assertNotNull(answer);
+    }
 }

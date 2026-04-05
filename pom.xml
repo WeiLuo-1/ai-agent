@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-markdown-document-reader</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.0-M6</version>
 		</dependency>
 
 		<!-- DashScope ChatModel 支持（如果使用其他模型，请跳转 Spring AI 文档选择对应的 starter） -->

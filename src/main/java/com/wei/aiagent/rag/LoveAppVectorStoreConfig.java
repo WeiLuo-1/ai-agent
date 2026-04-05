@@ -20,8 +20,8 @@ public class LoveAppVectorStoreConfig {
     private LoveAppDocumentLoader loveAppDocumentLoader;
 
     @Bean
-    VectorStore loveAppVectorStore(EmbeddingModel embeddingModel) {
-        SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(embeddingModel).build();
+    VectorStore loveAppVectorStore(EmbeddingModel ollamaEmbeddingModel) {
+        SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(ollamaEmbeddingModel).build();
         List<Document> documentList = loveAppDocumentLoader.loadMarkdowns();
         simpleVectorStore.add(documentList);
         return simpleVectorStore;
