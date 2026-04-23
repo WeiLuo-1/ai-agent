@@ -19,6 +19,7 @@ public class LoveAppVectorStoreConfig {
     @Resource
     private LoveAppDocumentLoader loveAppDocumentLoader;
 
+    // ollama embedding model: mxbai-embed-large
     @Bean
     VectorStore loveAppVectorStore(EmbeddingModel ollamaEmbeddingModel) {
         SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(ollamaEmbeddingModel).build();
