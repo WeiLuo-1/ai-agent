@@ -3,6 +3,7 @@ package com.wei.aiagent.rag;
 import jakarta.annotation.Resource;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
+import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
@@ -18,13 +19,19 @@ public class LoveAppVectorStoreConfig {
 
     @Resource
     private LoveAppDocumentLoader loveAppDocumentLoader;
+    
+    @Resource
+    private MyTokenTextSplitter myTokenTextSplitter;
 
     // ollama embedding model: mxbai-embed-large
     @Bean
     VectorStore loveAppVectorStore(EmbeddingModel ollamaEmbeddingModel) {
         SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(ollamaEmbeddingModel).build();
+        // 加载文档
         List<Document> documentList = loveAppDocumentLoader.loadMarkdowns();
-        simpleVectorStore.add(documentList);
+        // 自主切分文档
+//        List<Document> splitDocuments = myTokenTextSplitter.splitCustomized(documentList);
+//        simpleVectorStore.add(documentList);
         return simpleVectorStore;
     }
 }
